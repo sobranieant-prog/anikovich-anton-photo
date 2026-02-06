@@ -4,11 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <link rel="shortcut icon" href="/favicon.ico">
-
   <title>Anikovich — портфолио и фотоотчёты</title>
+  <link rel="icon" type="image/png" href="favicon.png">
 
   <style>
     :root {
@@ -19,7 +16,6 @@
       --accent: #7c7cff;
       --accent-2: #4dd0e1;
       --border: #23263a;
-      --tg: #2AABEE;
     }
 
     * { box-sizing: border-box; }
@@ -28,6 +24,7 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
+      line-height: 1.6;
     }
 
     a { color: inherit; text-decoration: none; }
@@ -51,52 +48,10 @@
 
     .logo {
       font-weight: 800;
+      letter-spacing: 0.5px;
     }
 
     .logo span { color: var(--accent); }
-
-    .nav a {
-      margin-left: 20px;
-      color: var(--muted);
-    }
-
-    /* Buttons */
-    .btn {
-      padding: 14px 22px;
-      border-radius: 12px;
-      font-weight: 600;
-      border: 1px solid transparent;
-      cursor: pointer;
-      display: inline-block;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #0b0c12;
-    }
-
-    .btn-secondary {
-      border: 1px solid var(--border);
-    }
-
-    .btn-tg {
-      background: var(--tg);
-      color: white;
-    }
-
-    .hero {
-      padding: 100px 0;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 40px;
-    }
-
-    .hero-actions {
-      margin-top: 32px;
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
 
     section {
       padding: 80px 0;
@@ -107,22 +62,22 @@
       margin-bottom: 48px;
     }
 
-    .form-wrap {
-      max-width: 640px;
-      margin: 0 auto;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 36px;
+    .section-title h2 {
+      font-size: 40px;
+      margin-bottom: 12px;
     }
 
-    input, textarea {
-      width: 100%;
-      padding: 14px;
-      border-radius: 12px;
-      background: #0f1120;
+    .advantages {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--card);
       border: 1px solid var(--border);
-      color: var(--text);
+      border-radius: 18px;
+      padding: 28px;
     }
 
     footer {
@@ -130,12 +85,50 @@
       border-top: 1px solid var(--border);
       text-align: center;
       color: var(--muted);
+      font-size: 14px;
     }
 
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
+    /* ===== LOCKED ALBUM ADDITION ===== */
+    .locked-album {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+
+    .locked-album img {
+      width: 100%;
+      display: block;
+      filter: blur(2px) brightness(0.55);
+      transition: 0.3s;
+    }
+
+    .locked-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.35);
+      text-align: center;
+    }
+
+    .locked-overlay span {
+      font-size: 56px;
+      margin-bottom: 12px;
+    }
+
+    .locked-overlay p {
+      margin: 4px 0;
+      font-weight: 600;
+    }
+
+    .locked-album:hover img {
+      filter: blur(1px) brightness(0.45);
     }
   </style>
 </head>
@@ -145,88 +138,54 @@
 <header>
   <div class="container nav">
     <div class="logo">Anikovich<span>Фотограф</span></div>
-    <nav>
-      <a href="#portfolio">Проекты</a>
-      <a href="#reports">Фотоотчёты</a>
-      <a href="#book">Запись</a>
-    </nav>
   </div>
 </header>
 
 <main class="container">
 
-  <!-- HERO -->
-  <section class="hero">
-    <div>
-      <h1>Anikovich Anton — фотограф</h1>
-      <p>Мероприятия, бренды, личные съёмки. Запись и управление съёмками через Telegram.</p>
-
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#book">Оставить заявку</a>
-
-        <!-- 🔥 КНОПКА TELEGRAM -->
-        <a class="btn btn-tg"
-           href="https://t.me/@artfotbot?start=site"
-           target="_blank">
-          📅 Записаться через Telegram
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- REPORTS -->
+  <!-- CLIENT REPORTS -->
   <section id="reports">
     <div class="section-title">
       <h2>Фотоотчёты для клиентов</h2>
-      <p>Пароль приходит автоматически в Telegram после съёмки</p>
+      <p>Доступ к материалам по персональному паролю</p>
     </div>
 
-    <div class="form-wrap">
-      <input type="password" id="reportPassword" placeholder="Введите пароль">
-      <button class="btn btn-primary" onclick="checkPassword()">Открыть</button>
-
-      <p style="color:#a6abc8; margin-top:16px;">
-        🔐 Если вы клиент — пароль вы получаете в Telegram после подтверждения съёмки.
-      </p>
-
-      <div id="reportContent" style="display:none; margin-top:24px">
-        <img src="https://placehold.co/800x500/0f1120/7c7cff" style="width:100%; border-radius:14px">
+    <!-- 🔒 CLOSED ALBUM PREVIEW -->
+    <div class="locked-album" onclick="openAlbumPrompt()">
+      <img src="https://placehold.co/800x500/0f1120/7c7cff?text=Client+Album" alt="Закрытый альбом">
+      <div class="locked-overlay">
+        <span>🔒</span>
+        <p>Альбом закрыт</p>
+        <p style="font-size:14px;color:#cbd0ff">
+          Доступ только для клиентов
+        </p>
       </div>
     </div>
 
-    <script>
-      function checkPassword() {
-        if (document.getElementById('reportPassword').value === 'demo') {
-          document.getElementById('reportContent').style.display = 'block';
-        } else {
-          alert('Неверный пароль');
-        }
-      }
-    </script>
-  </section>
-
-  <!-- BOOK -->
-  <section id="book">
-    <div class="section-title">
-      <h2>Запись на съёмку</h2>
-      <p>Быстрее всего — через Telegram-бота</p>
-    </div>
-
-    <div class="form-wrap">
-      <a class="btn btn-tg"
-         href="https://t.me/@artfotbot?start=site"
-         target="_blank"
-         style="width:100%; text-align:center;">
-        📅 Открыть Telegram-бота для записи
-      </a>
-    </div>
   </section>
 
 </main>
 
 <footer>
-  © 2026 Anikovich
+  <div class="container">
+    © 2026 Anikovich. Все права защищены.
+  </div>
 </footer>
+
+<script>
+  function openAlbumPrompt() {
+    const password = prompt("Введите пароль доступа к фотоотчёту:");
+
+    if (!password) return;
+
+    if (password === "demo") {
+      alert("Доступ разрешён. Здесь будет альбом клиента.");
+      // window.location.href = "/client-album.html";
+    } else {
+      alert("Неверный пароль. Пароль вы получаете в Telegram после съёмки.");
+    }
+  }
+</script>
 
 </body>
 </html>
