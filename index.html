@@ -1,11 +1,412 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Антонович Антон — Фото</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Герой‑фотограф — портфолио и фотоотчёты</title>
+  <style>
+    :root {
+      --bg: #0e0f13;
+      --card: #161823;
+      --text: #e8eaf0;
+      --muted: #a6abc8;
+      --accent: #7c7cff;
+      --accent-2: #4dd0e1;
+      --border: #23263a;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 10% -10%, #1a1d2e 0%, transparent 60%),
+                  radial-gradient(1000px 500px at 90% 10%, #111436 0%, transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .logo span { color: var(--accent); }
+
+    .nav a {
+      margin-left: 20px;
+      color: var(--muted);
+    }
+
+    .nav a:hover { color: var(--text); }
+
+    /* Hero */
+    .hero {
+      padding: 100px 0 80px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 56px;
+      line-height: 1.1;
+      margin: 0 0 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    .hero-actions {
+      margin-top: 32px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #0b0c12;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, #1a1d2e, #121426);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+    }
+
+    .hero-card img {
+      width: 100%;
+      border-radius: 14px;
+      display: block;
+    }
+
+    /* Advantages */
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-title h2 {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+    }
+
+    .advantages {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .card p { color: var(--muted); }
+
+    /* Testimonials */
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .testimonial {
+      font-size: 15px;
+    }
+
+    .author {
+      margin-top: 16px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .author span {
+      display: block;
+      font-weight: 400;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Form */
+    .form-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px;
+    }
+
+    form {
+      display: grid;
+      gap: 16px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #0f1120;
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    textarea { resize: vertical; min-height: 120px; }
+
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .advantages,
+      .testimonials {
+        grid-template-columns: 1fr;
+      }
+      .hero h1 { font-size: 42px; }
+      .section-title h2 { font-size: 32px; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Сайт работает 🎉</h1>
-  <p>Если ты это видишь — значит всё получилось.</p>
+
+<header>
+  <div class="container nav">
+    <div class="logo">Герой<span>Фотограф</span></div>
+    <nav>
+      <a href="#advantages">Преимущества</a>
+      <a href="#portfolio">Проекты</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#book">Запись</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- Hero -->
+  <section class="hero" id="portfolio">
+    <div>
+      <h1>Anikovich Anton — фотограф<br>мероприятий, брендов и людей</h1>
+      <p>
+        Работаю в Минске и по всей Беларуси. Снимаю мероприятия, бизнес и личные портреты.
+        Делаю аккуратные фотоотчёты, которые удобно хранить, показывать клиентам и использовать для продвижения.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#book">Записаться на съёмку</a>
+        <a class="btn btn-secondary" href="#reviews">Смотреть отзывы</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <img src="https://placehold.co/800x500/0f1120/7c7cff?text=Hero+Photo" alt="Пример фотографии" />
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="portfolio">
+    <div class="section-title">
+      <h2>Проекты и портфолио</h2>
+      <p>Примеры реальных съёмок: мероприятия, бренды и личные портреты</p>
+    </div>
+
+    <div class="advantages">
+      <div class="card">
+        <h3>Мероприятия</h3>
+        <p><strong>Формат:</strong> репортаж, атмосфера, ключевые моменты</p>
+        <p><strong>Для кого:</strong> ивенты, конференции, частные события</p>
+        <p><strong>Результат:</strong> структурированный фотоотчёт, готовый для публикаций</p>
+      </div>
+      <div class="card">
+        <h3>Бренды и бизнес</h3>
+        <p><strong>Формат:</strong> контент для сайтов, соцсетей и рекламы</p>
+        <p><strong>Для кого:</strong> компании, эксперты, личные бренды</p>
+        <p><strong>Результат:</strong> универсальные кадры под разные задачи</p>
+      </div>
+      <div class="card">
+        <h3>Личные портреты</h3>
+        <p><strong>Формат:</strong> портреты, lifestyle, съёмка для себя</p>
+        <p><strong>Для кого:</strong> частные клиенты</p>
+        <p><strong>Результат:</strong> живые и естественные фотографии</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Advantages -->
+  <section id="advantages">
+    <div class="section-title">
+      <h2>Почему выбирают меня</h2>
+      <p>Чёткий процесс, эстетика и безопасность ваших фотографий</p>
+    </div>
+
+    <div class="advantages">
+      <div class="card">
+        <h3>Системные фотоотчёты</h3>
+        <p>Каждая съёмка оформляется как законченный проект: логичная структура, отбор лучших кадров и удобный просмотр.</p>
+      </div>
+      <div class="card">
+        <h3>Опыт в ивентах и бизнесе</h3>
+        <p>Понимаю тайминг мероприятий, задачи брендов и важность живых, продающих кадров.</p>
+      </div>
+      <div class="card">
+        <h3>Надёжное хранение работ</h3>
+        <p>Фотографии доступны онлайн в высоком качестве — вы всегда можете вернуться к своим съёмкам.</p>
+      </div>
+    </div>
+      <div class="card">
+        <h3>Надёжное хранение</h3>
+        <p>Ваши фотографии аккуратно структурированы и доступны онлайн без потери качества.</p>
+      </div>
+      <div class="card">
+        <h3>Готовое портфолио</h3>
+        <p>Съёмки выглядят как законченные проекты, которые не стыдно показать клиентам и партнёрам.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Reports (Password Protected) -->
+  <section id="reports">
+    <div class="section-title">
+      <h2>Фотоотчёты для клиентов</h2>
+      <p>Доступ к материалам по персональной ссылке и паролю</p>
+    </div>
+
+    <div class="form-wrap">
+      <p style="color:#a6abc8; margin-bottom:16px;">Введите пароль, полученный после съёмки:</p>
+      <input type="password" id="reportPassword" placeholder="Пароль" />
+      <button class="btn btn-primary" style="margin-top:12px" onclick="checkPassword()">Открыть фотоотчёт</button>
+
+      <div id="reportContent" style="display:none; margin-top:24px">
+        <h3>Фотоотчёт: Event Demo</h3>
+        <p style="color:#a6abc8">Пример защищённого отчёта. Здесь размещаются фотографии клиента.</p>
+        <img src="https://placehold.co/800x500/0f1120/7c7cff?text=Client+Report" style="width:100%; border-radius:14px" />
+      </div>
+    </div>
+
+    <script>
+      function checkPassword() {
+        const password = document.getElementById('reportPassword').value;
+        if (password === 'client123') {
+          document.getElementById('reportContent').style.display = 'block';
+        } else {
+          alert('Неверный пароль');
+        }
+      }
+    </script>
+  </section>
+
+
+  <!-- Testimonials -->
+  <section id="reviews">
+    <div class="section-title">
+      <h2>Отзывы клиентов</h2>
+      <p>Немного слов от тех, с кем мы уже поработали</p>
+    </div>
+
+    <div class="testimonials">
+      <div class="card testimonial">
+        «Очень комфортная работа и потрясающий результат. Фото получили быстро, качество — выше ожиданий.»
+        <div class="author">Анна<span>маркетолог</span></div>
+      </div>
+      <div class="card testimonial">
+        «Фотоотчёт с мероприятия выглядел как журнал. Отдельный плюс — удобное онлайн‑хранение.»
+        <div class="author">Дмитрий<span>ивент‑продюсер</span></div>
+      </div>
+      <div class="card testimonial">
+        «Портфолио получилось цельным и стильным. Теперь использую фото для сайта и соцсетей.»
+        <div class="author">Екатерина<span>личный бренд</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form -->
+  <section id="book">
+    <div class="section-title">
+      <h2>Запись на съёмку</h2>
+      <p>Оставьте заявку — я свяжусь с вами и предложу формат</p>
+    </div>
+
+    <div class="form-wrap">
+      <form>
+        <input type="text" placeholder="Ваше имя" required />
+        <input type="email" placeholder="Email или мессенджер" required />
+        <input type="text" placeholder="Тип съёмки (мероприятие, портфолио, бренд)" />
+        <textarea placeholder="Кратко опишите задачу"></textarea>
+        <button class="btn btn-primary" type="submit">Отправить заявку</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    © 2026 Герой‑Фотограф. Все права защищены.
+  </div>
+</footer>
+
 </body>
 </html>
