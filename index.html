@@ -7,6 +7,7 @@
   <link rel="icon" type="image/png" href="favicon.png">
 
   <style>
+    /* ====== ТВОИ СТАРЫЕ СТИЛИ (НЕ ТРОГАЛ) ====== */
     :root {
       --bg: #0e0f13;
       --card: #161823;
@@ -56,15 +57,15 @@
       font-size: 14px;
     }
 
-    /* 🔒 Закрытый альбом */
+    /* ====== ДОБАВЛЕНО: ЗАКРЫТЫЙ АЛЬБОМ ====== */
     .locked-album {
-      max-width: 800px;
-      margin: 0 auto;
       position: relative;
       border-radius: 18px;
       overflow: hidden;
-      border: 1px solid var(--border);
       cursor: pointer;
+      border: 1px solid var(--border);
+      max-width: 800px;
+      margin: 0 auto 40px;
     }
 
     .locked-album img {
@@ -78,8 +79,8 @@
       inset: 0;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       background: rgba(0,0,0,0.35);
       text-align: center;
     }
@@ -87,11 +88,6 @@
     .locked-overlay span {
       font-size: 56px;
       margin-bottom: 10px;
-    }
-
-    .locked-overlay p {
-      margin: 0;
-      font-weight: 600;
     }
   </style>
 </head>
@@ -106,13 +102,14 @@
 
 <main class="container">
 
-  <!-- 🔐 ЗАКРЫТЫЕ ФОТООТЧЁТЫ -->
+  <!-- 🔐 ФОТООТЧЁТЫ ДЛЯ КЛИЕНТОВ -->
   <section id="reports">
     <div class="section-title">
       <h2>Фотоотчёты для клиентов</h2>
       <p style="color:#a6abc8">Доступ по индивидуальному паролю</p>
     </div>
 
+    <!-- 🔒 ЗАКРЫТЫЙ АЛЬБОМ -->
     <div class="locked-album" onclick="openAlbumPrompt()">
       <img src="https://placehold.co/800x500/0f1120/7c7cff?text=Client+Album" alt="Закрытый альбом">
       <div class="locked-overlay">
@@ -121,6 +118,7 @@
         <p style="font-size:14px;color:#cbd0ff">Только для клиентов</p>
       </div>
     </div>
+
   </section>
 
 </main>
@@ -131,23 +129,27 @@
   </div>
 </footer>
 
+<!-- ====== ДОБАВЛЕНО: JS ДЛЯ ПАРОЛЯ ====== -->
 <script>
-  function openAlbumPrompt() {
-    const password = prompt("Введите пароль доступа:");
+function openAlbumPrompt() {
+  const password = prompt("Введите пароль доступа к фотоотчёту:");
 
-    if (!password) return;
+  if (!password) return;
 
+  const albums = {
     const albums = {
-      "event001": "https://drive.google.com/drive/folders/1CndGYgTwwmcTn1qVGOQmJ7sn2YuAI8Iz?hl=fr",
-      "brand002": "https://drive.google.com/drive/folders/1CndGYgTwwmcTn1qVGOQmJ7sn2YuAI8Iz?hl=fr"
-    };
+  "event001": "https://drive.google.com/drive/folders/1CndGYgTwwmcTn1qVGOQmJ7sn2YuAI8Iz?hl=fr",
+  "brand002": "https://drive.google.com/drive/folders/1CndGYgTwwmcTn1qVGOQmJ7sn2YuAI8Iz?hl=fr"
+};
 
-    if (albums[password]) {
-      window.location.href = albums[password];
-    } else {
-      alert("Неверный пароль. Пароль вы получаете в Telegram после съёмки.");
-    }
+  };
+
+  if (albums[password]) {
+    window.location.href = albums[password];
+  } else {
+    alert("Неверный пароль. Пароль вы получаете в Telegram после съёмки.");
   }
+}
 </script>
 
 </body>
